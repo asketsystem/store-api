@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const mongoose = require("mongoose");
+const dotenv = require('dotenv');
 
-mongoose.connect("mongodb+srv://root:root@cluster0.ncchk.mongodb.net/?retryWrites=true&w=majority")
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("DBConnection Successfully Connected"))
 .catch((err) => {
     console.log(err);
 })
 
-app.listen(5000, () => {
-    console.log('Server running at http://localhost:5000');
+app.listen(process.env.PORT || 5000, () => {
+    console.log('Server running !');
 })
